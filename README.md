@@ -1,93 +1,129 @@
-# 🌐 Portofolio 3D Interaktif — Giska Aura
+# 🌐 PORTO
 
-Website portofolio pribadi dengan efek **3D real-time** menggunakan **Three.js**, desain modern, serta animasi halus. Proyek ini dibuat untuk menampilkan profil, keahlian, dan proyek dalam tampilan web profesional dan responsif.
+> Website portofolio 3D interaktif dengan desain modern, animasi halus, dan integrasi Three.js — dibuat untuk menampilkan profil, keahlian, dan proyek secara profesional.
 
 ![Preview](assets/foto.jpg)
+
+<p align="center">
+  <a href="#-tentang-proyek">Tentang</a> •
+  <a href="#-fitur-utama">Fitur</a> •
+  <a href="#-teknologi">Teknologi</a> •
+  <a href="#-instalasi">Instalasi</a> •
+  <a href="#-struktur-proyek">Struktur</a> •
+  <a href="#-kontribusi">Kontribusi</a> •
+  <a href="#-lisensi">Lisensi</a>
+</p>
+
+---
+
+## 🪄 Badge
+
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![Three.js](https://img.shields.io/badge/Three.js-000000?style=for-the-badge&logo=three.js&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Active-brightgreen?style=for-the-badge)
+
+---
+
+## 📖 Tentang Proyek
+
+**PORTO** adalah website portofolio interaktif yang memanfaatkan teknologi **Three.js** untuk efek 3D real-time pada bagian profil, serta dilengkapi dengan dark mode, animasi halus, dan navigasi modern.  
+Proyek ini cocok untuk personal branding, web developer, desainer UI/UX, atau siapa pun yang ingin tampil profesional secara online.
 
 ---
 
 ## ✨ Fitur Utama
 
-- 🎨 **Desain Modern & Responsif** — Menggunakan CSS grid & flexbox, mendukung mode terang dan gelap.  
-- 🧭 **Navigasi Smooth Scroll** — Transisi halaman yang lembut saat klik menu.  
-- 🌙 **Dark Mode Toggle** — Tersimpan otomatis di `localStorage`.  
-- 🧍‍♂️ **Animasi Profil 3D** — Efek tilt & floating halus.  
-- 💫 **Efek 3D Real-Time** — Menggunakan Three.js + GLTF model untuk canvas hero section.  
-- 🖱️ **Cursor Interaktif** — Lingkaran dan jejak mengikuti gerakan pointer.  
-- 🧱 **Reveal on Scroll** — Elemen muncul dengan animasi saat discroll.  
-- 📄 **Download CV** — Tautan langsung ke file PDF.
+- 🌗 **Mode Gelap & Terang** — Dapat disimpan otomatis di `localStorage`.  
+- 🧭 **Navigasi Smooth Scroll** — Transisi lembut saat klik anchor.  
+- 🖼️ **Hero Section 3D** — Canvas dengan GLTF model dan efek bloom.  
+- 🖱️ **Cursor Ring & Trail** — Interaktif mengikuti pointer.  
+- 📄 **Download CV Langsung** — Tombol unduh CV PDF.  
+- 📱 **Desain Responsif** — Optimal untuk desktop & mobile.  
+- ⚡ **Animasi Scroll (Reveal)** — Konten muncul dinamis saat discroll.
 
 ---
 
-## 🧰 Teknologi yang Digunakan
+## 🧰 Teknologi
 
-- **HTML5**, **CSS3**, **JavaScript (ES6+)**  
-- [Three.js](https://threejs.org/) (GLTFLoader, UnrealBloomPass, dll)  
-- [Lottie](https://airbnb.io/lottie/#/) untuk animasi logo  
-- Intersection Observer API  
-- Responsive Web Design Principles
+- **HTML5**, **CSS3**, **JavaScript (ES6+)**
+- [Three.js](https://threejs.org/) — GLTF Loader, UnrealBloomPass
+- [Lottie](https://airbnb.io/lottie/#/) — Animasi logo
+- Intersection Observer API
+- Responsive Web Design
 
 ---
 
-## 📁 Struktur Proyek
+## 🛠 Instalasi
+
+1. **Clone repositori**
+   ```bash
+   git clone https://github.com/username/PORTO.git
+   cd PORTO
+   ```
+
+2. **Jalankan secara lokal**  
+   Kamu bisa membuka langsung `index.html` melalui browser, atau menggunakan server lokal agar fitur `import module` berjalan optimal.
+
+   Menggunakan **Python**:
+   ```bash
+   python -m http.server 8000
+   ```
+   Akses: [http://localhost:8000](http://localhost:8000)
+
+   Menggunakan **Node.js**:
+   ```bash
+   npx serve .
+   ```
+
+---
+
+## 🧱 Struktur Proyek
 
 ```
-.
-├── index.html               # Halaman utama
+PORTO/
+├── index.html
 ├── assets/
-│   ├── foto.jpg            # Foto profil
-│   ├── cv.pdf              # CV untuk tombol unduh
-│   ├── lottie/logo.json    # File animasi logo
-│   ├── env_small.hdr       # Environment HDR untuk Three.js
+│   ├── foto.jpg
+│   ├── cv.pdf
+│   ├── lottie/logo.json
+│   ├── env_small.hdr
 │   └── model/
-│       └── hero.glb        # Model 3D GLTF
+│       └── hero.glb
 └── README.md
 ```
 
 ---
 
-## 🚀 Cara Menjalankan
+## 🧠 Tips & Kustomisasi
 
-1. **Clone Repository**  
-   ```bash
-   git clone https://github.com/username/portofolio-3d.git
-   cd portofolio-3d
-   ```
-
-2. **Buka Secara Lokal**  
-   Kamu dapat membuka file `index.html` langsung di browser.  
-   Atau, gunakan server lokal agar fitur `import` module Three.js berjalan optimal:
-
-   ```bash
-   # Menggunakan Python
-   python -m http.server 8000
-   # Akses: http://localhost:8000
-   ```
-
-   atau dengan Node.js:
-   ```bash
-   npx serve .
-   ```
-
-3. Pastikan semua file `assets/` sudah tersedia dan path benar.
+- Ganti `assets/model/hero.glb` dengan model 3D GLTF milikmu sendiri.  
+- Ubah warna tema di bagian `:root` & `[data-theme='dark']`.  
+- Tambah kartu proyek baru dengan menyalin struktur `.card` di bagian `#projects`.
 
 ---
 
-## 🧠 Tips & Modifikasi
+## 🤝 Kontribusi
 
-- Ganti `assets/model/hero.glb` dengan model GLTF kamu sendiri untuk tampilan unik.  
-- Sesuaikan palet warna pada `:root` dan `[data-theme='dark']`.  
-- Tambahkan proyek baru dengan menyalin struktur `.card` di bagian `#projects`.
+Kontribusi selalu terbuka!  
+Jika kamu ingin berkontribusi:
+
+1. Fork repositori ini.  
+2. Buat branch fitur: `git checkout -b fitur-baru`.  
+3. Commit perubahan: `git commit -m "Tambah fitur baru"`.  
+4. Push ke branch: `git push origin fitur-baru`.  
+5. Ajukan Pull Request.
 
 ---
 
 ## 📜 Lisensi
 
-Proyek ini dibuat untuk keperluan pribadi dan pembelajaran. Kamu bebas melakukan modifikasi untuk portofolio sendiri, tetapi harap berikan atribusi jika menggunakan ulang desain dan struktur ini.
+Proyek ini dirilis di bawah lisensi **MIT** — kamu bebas menggunakannya untuk proyek pribadi maupun publik dengan atribusi yang sesuai.
 
 ---
 
-## 👩‍💻 Tentang
+## 👨‍💻 Pembuat
 
 **Giska Aura Muhamad Prasetyo**  
 Web Developer • UI/UX Enthusiast  
