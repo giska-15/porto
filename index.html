@@ -1,0 +1,427 @@
+<!doctype html>
+
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portofolio - Giska Aura</title>
+  <style>
+    :root{
+      --bg:#f7f7fb; --card:#fff; --muted:#666; --accent:#f39c12; --text:#111; --glass:rgba(255,255,255,0.6);
+    }
+    [data-theme='dark']{ --bg:#07111b; --card:#0f1724; --muted:#98a1ad; --accent:#ffb86b; --text:#e6eef8; --glass:rgba(255,255,255,0.04); }
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      margin:0; font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, 'Helvetica Neue', Arial;
+      background:var(--bg); color:var(--text); -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      -webkit-tap-highlight-color:transparent;
+      transition:background .25s ease, color .25s ease;
+    }
+
+    /* Header */
+    header{backdrop-filter: blur(8px); background:var(--glass); position:fixed;top:0;left:0;width:100%;z-index:1000;transition:background .25s}
+    .wrap{max-width:1100px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#ff8a00);display:flex;align-items:center;justify-content:center;color:#111;font-weight:800;box-shadow:0 6px 18px rgba(243,156,18,0.12);}
+
+    nav{display:flex;gap:18px;align-items:center}
+    nav a{color:var(--muted);text-decoration:none;font-weight:600}
+    .actions{display:flex;gap:10px;align-items:center}
+    .btn{background:var(--accent);color:#07111b;padding:8px 12px;border-radius:10px;text-decoration:none;font-weight:700;border:none;cursor:pointer;box-shadow:0 6px 18px rgba(0,0,0,0.06)}
+    .ghost{background:transparent;border:1px solid rgba(0,0,0,0.04);padding:8px 12px;border-radius:10px;color:var(--muted);cursor:pointer;}
+
+    /* Mobile menu */
+    .hamb{display:none;padding:8px;border-radius:8px;background:transparent;border:none;color:var(--muted)}
+
+    /* Hero */
+    .hero{min-height:85vh;display:flex;align-items:center;padding:120px 20px 60px}
+    .hero-grid{display:grid;grid-template-columns:360px 1fr;gap:40px;align-items:center;max-width:1100px;margin:0 auto;width:100%}
+    .profile{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px}
+    /* animated profile picture: subtle float + lift on hover */
+    .pf-pic{width:220px;height:220px;border-radius:20px;object-fit:cover;border:6px solid var(--card);box-shadow:0 14px 40px rgba(2,6,23,0.08); transition:transform .18s ease, box-shadow .18s; will-change:transform;
+      animation:floatY 6s ease-in-out infinite; transform-origin:center; display:block;}
+    @keyframes floatY{0%{transform:translateY(0)}50%{transform:translateY(-8px)}100%{transform:translateY(0)}}
+    .pf-wrapper{position:relative;display:inline-block}
+    .pf-wrapper.is-tilt .pf-pic{transition:transform .12s ease, box-shadow .12s; box-shadow:0 18px 48px rgba(2,6,23,0.12)}
+    .pf-3d{
+      position:absolute;inset:0;margin:0;padding:0;width:100%;height:100%;
+      border-radius:20px;pointer-events:none;z-index:0;mix-blend-mode:screen;opacity:0.95;
+      filter:drop-shadow(0 12px 30px rgba(2,6,23,0.12));
+    }
+    .pf-pic{position:relative;z-index:2}
+
+    h1{font-size:2rem;margin:0}
+    p.lead{color:var(--muted);margin-top:6px}
+    .cta-row{display:flex;gap:12px;margin-top:12px}
+    .highlight{color:var(--accent);font-weight:800}
+
+    /* Sections */
+    section{padding:80px 20px}
+    .container{max-width:1100px;margin:0 auto}
+    h2{margin-bottom:14px}
+
+    /* Grid projects */
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+    .card{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 6px 18px rgba(2,6,23,0.06);transition:transform .25s ease,box-shadow .25s;overflow:hidden}
+    .card:hover{transform:translateY(-8px);box-shadow:0 22px 50px rgba(2,6,23,0.12)}
+    .card img{width:100%;height:160px;object-fit:cover;border-radius:10px;transition:transform .35s cubic-bezier(.2,.9,.3,1), box-shadow .35s; will-change:transform;}
+    .card:hover img{transform:translateY(-6px) scale(1.02) rotate(-0.4deg)}
+    .meta{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+
+    /* Contact / socials */
+    .socials{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+    .socials a{display:inline-flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:var(--card);text-decoration:none;color:var(--text);box-shadow:0 8px 20px rgba(2,6,23,0.04)}
+    .socials svg{width:18px;height:18px;flex:0 0 18px}
+    .brand-mini{display:inline-flex;align-items:center;gap:8px;font-weight:700}
+    .brand-mini .logo-sm{width:34px;height:34px;border-radius:8px;display:inline-grid;place-items:center;background:linear-gradient(135deg,var(--accent),#ff8a00);color:#07111b;font-weight:800}
+
+    /* Reveal animation */
+    .reveal{opacity:0;transform:translateY(18px);transition:transform .6s cubic-bezier(.2,.9,.3,1),opacity .6s}
+    .reveal.show{opacity:1;transform:none}
+
+    /* Cursor ring and trail */
+    .cursor-ring{position:fixed;left:0;top:0;width:18px;height:18px;border-radius:50%;pointer-events:none;z-index:10001;transform:translate(-50%,-50%);border:2px solid var(--accent);background:rgba(255,255,255,0.06);transition:background .18s,border .18s;mix-blend-mode:exclusion}
+    .cursor-trail{position:fixed;width:14px;height:14px;border-radius:50%;background:var(--accent);pointer-events:none;z-index:10000;left:0;top:0;transform:translate(-50%,-50%) scale(1);opacity:0.6;transition:opacity .35s, transform .35s;will-change:opacity,transform;mix-blend-mode:exclusion}
+
+    /* Dark toggle */
+    .toggle{display:inline-flex;align-items:center;gap:8px;padding:6px;background:var(--card);border-radius:999px;border:1px solid rgba(0,0,0,0.04);cursor:pointer}
+
+    /* Responsive */
+    @media(max-width:880px){
+      .hero-grid{grid-template-columns:1fr;}
+      nav{display:none}
+      .hamb{display:block}
+      .pf-pic{width:160px;height:160px}
+    }
+
+    /* reduced motion fallback */
+    @media (prefers-reduced-motion: reduce){
+      .pf-pic, .card img, .cursor-trail, .cursor-ring { animation: none !important; transition: none !important; }
+    }
+
+    /* 3D canvas in profile */
+    .pf-wrapper{position:relative;display:inline-block}
+    .pf-3d{
+      position:absolute;inset:0;margin:0;padding:0;width:100%;height:100%;
+      border-radius:20px;pointer-events:none;z-index:0;mix-blend-mode:screen;opacity:0.95;
+      filter:drop-shadow(0 12px 30px rgba(2,6,23,0.12));
+    }
+    .pf-pic{position:relative;z-index:2}
+  </style>
+</head>
+<body>
+  <div class="cursor-ring" id="cursor-ring" aria-hidden="true"></div>
+  <header>
+    <div class="wrap">
+      <div class="brand">
+        <div class="logo" id="logo-lottie" style="width:44px;height:44px"></div>
+        <div>
+          <div style="font-weight:800">Giska Aura</div>
+          <div style="font-size:12px;color:var(--muted)">Web Developer • UI/UX Enthusiast</div>
+        </div>
+      </div><nav aria-label="Main navigation">
+    <a href="#home">Beranda</a>
+    <a href="#projects">Proyek</a>
+    <a href="#contact">Kontak</a>
+  </nav>
+
+  <div class="actions">
+    <button class="ghost" id="dark-toggle" aria-pressed="false">🌙</button>
+    <a class="btn" id="download-cv" href="assets/cv.pdf" download>Download CV</a>
+    <button class="hamb" id="hamb">☰</button>
+  </div>
+</div>
+
+  </header>  <main>
+    <section id="home" class="hero">
+      <div class="hero-grid container">
+        <div class="profile reveal interactive">
+          <span class="pf-wrapper" id="pf-wrapper">
+            <canvas id="pf-3d" class="pf-3d" aria-hidden="true"></canvas>
+            <img src="assets/foto.jpg" alt="Foto Profil" class="pf-pic" id="pf-pic">
+          </span>
+           <h1>Halo, Saya <span class="highlight">Giska Aura</span></h1>
+           <p class="lead">Web Developer & UI/UX Designer — saya membangun pengalaman web yang rapi, cepat, dan menyenangkan.</p>
+           <div class="cta-row">
+             <a href="#projects" class="btn">Lihat Proyek</a>
+             <a href="#contact" class="ghost">Hubungi</a>
+           </div>
+         </div><div class="intro reveal">
+      <h2>Ringkasan</h2>
+      <p class="lead">
+  Saya seorang pengembang web yang berfokus pada <b>front-end interaktif</b> dan <b>desain antarmuka modern</b>. Berpengalaman membangun aplikasi dengan <b>React</b>, <b>Node.js</b>, dan <b>Three.js</b>. Saya percaya bahwa web harus <span class="highlight">cepat, mudah diakses, dan estetik</span>.
+</p>
+<div style="margin-top:18px">
+  <div style="display:flex;gap:8px;flex-wrap:wrap">
+    <span class="ghost">HTML5</span>
+    <span class="ghost">CSS3</span>
+    <span class="ghost">JavaScript (ES6+)</span>
+    <span class="ghost">React</span>
+    <span class="ghost">Next.js</span>
+    <span class="ghost">Three.js</span>
+    <span class="ghost">Figma</span>
+    <span class="ghost">Node.js</span>
+  </div>
+</div>
+
+    </div>
+  </div>
+</section>
+
+<section id="projects" class="reveal">
+  <div class="container">
+    <h2>Proyek Saya</h2>
+    <div class="grid">
+      <article class="card reveal">
+        <img src="assets/asta-demon-black-3840x2160-11222.png" alt="Project 1">
+        <h3>Landing Page UMKM</h3>
+        <p>Website responsif untuk brand lokal, dengan animasi halus dan performa tinggi.</p>
+        <div class="meta"><small style="color:var(--muted)">HTML • CSS • JS</small><a class="btn" href="#">Lihat</a></div>
+      </article>
+
+      <article class="card reveal">
+        <img src="assets/itachi-uchiha-dark-3840x2160-20031.jpg" alt="Project 2">
+        <h3>Portofolio 3D Interaktif</h3>
+        <p>Portofolio pribadi dengan efek 3D real-time menggunakan Three.js dan React.</p>
+        <div class="meta"><small style="color:var(--muted)">React • Three.js</small><a class="btn" href="#">Lihat</a></div>
+      </article>
+
+      <article class="card reveal">
+        <img src="assets/sharingan-naruto-5k-3840x2160-10835.png" alt="Project 3">
+        <h3>Dashboard Analitik</h3>
+        <p>Dashboard modern untuk monitoring data bisnis, lengkap dengan grafik interaktif.</p>
+        <div class="meta"><small style="color:var(--muted)">Node • Express • Chart.js</small><a class="btn" href="#">Lihat</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="reveal">
+  <div class="container">
+    <h2>Kontak</h2>
+    <div class="socials" aria-label="Social links">
+      <a href="https://github.com/giskaaura" target="_blank" rel="noopener" aria-label="GitHub">
+        <span class="logo-sm">GA</span>
+        <span>GitHub</span>
+        <!-- simple GitHub SVG -->
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .5C5.73.5.9 5.33.9 11.6c0 4.74 3.07 8.76 7.33 10.18.54.1.74-.24.74-.52 0-.26-.01-1-.02-1.96-2.98.65-3.61-1.44-3.61-1.44-.49-1.25-1.2-1.58-1.2-1.58-.98-.67.07-.66.07-.66 1.08.08 1.65 1.12 1.65 1.12.96 1.64 2.52 1.17 3.14.9.1-.7.38-1.17.69-1.44-2.38-.27-4.87-1.19-4.87-5.31 0-1.17.42-2.12 1.11-2.86-.11-.28-.48-1.4.11-2.92 0 0 .91-.29 2.98 1.1a10.33 10.33 0 012.71-.36c.92 0 1.85.12 2.71.36 2.06-1.39 2.96-1.1 2.96-1.1.6 1.52.23 2.64.12 2.92.7.74 1.11 1.69 1.11 2.86 0 4.13-2.5 5.03-4.88 5.29.39.34.74 1.02.74 2.06 0 1.49-.01 2.69-.01 3.06 0 .29.2.63.75.52C19 20.36 22.1 16.34 22.1 11.6 22.1 5.33 17.27.5 12 .5z"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/giskaaura" target="_blank" rel="noopener" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5C4.98 5 3.76 6.2 2.25 6.2S-.48 5 .03 3.5C.03 2 .03.75 2.25.75s2.73 1.25 2.73 2.75zM.5 8.5h4.5V24H.5zM9.5 8.5h4.32v2.07h.06c.6-1.14 2.08-2.34 4.28-2.34 4.58 0 5.42 3.02 5.42 6.95V24H19.2v-7.63c0-1.82-.03-4.16-2.54-4.16-2.54 0-2.93 1.99-2.93 4.04V24H9.5z"/></svg>
+        <span>LinkedIn</span>
+      </a>
+      <a href="mailto:giskaaura@gmail.com" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5L4 8V6l8 5 8-5v2z"/></svg>
+        <span>Email</span>
+      </a>
+      <a href="https://instagram.com/giskaaura" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm5 6.2A3.8 3.8 0 1015.8 12 3.8 3.8 0 0012 8.2zM18.4 6.2a1.1 1.1 0 11-1.1-1.1 1.1 1.1 0 011.1 1.1z"/></svg>
+        <span>Instagram</span>
+      </a>
+    </div>
+    <div style="margin-top:14px;color:var(--muted);font-size:13px">Atau visit <strong>giskaaura.dev</strong> — tersedia CV di GitHub.</div>
+   </div>
+ </section>
+
+  </main>  <footer>
+    <div class="container">© 2025 Giska Aura Muhamad Prasetyo — dibuat dengan ♥ dan anime</div>
+  </footer>  <script>
+    /* -------------------- dark mode (improved) -------------------- */
+    const darkToggle = document.getElementById('dark-toggle');
+    const systemPrefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const savedTheme = localStorage.getItem('theme');
+    function applyTheme(mode){
+      if(mode === 'dark') document.documentElement.setAttribute('data-theme','dark'), darkToggle.setAttribute('aria-pressed','true'), darkToggle.textContent='☀️';
+      else document.documentElement.removeAttribute('data-theme'), darkToggle.setAttribute('aria-pressed','false'), darkToggle.textContent='🌙';
+    }
+    // initial
+    if(savedTheme) applyTheme(savedTheme);
+    else applyTheme(systemPrefersDark ? 'dark' : 'light');
+    darkToggle.addEventListener('click', ()=>{
+      const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      const next = isDark ? 'light' : 'dark';
+      applyTheme(next);
+      localStorage.setItem('theme', next);
+    });
+
+    /* -------------------- mobile menu (small) -------------------- */
+    const hamb = document.getElementById('hamb');
+    hamb.addEventListener('click', ()=>{ const nav = document.querySelector('nav'); if(nav.style.display==='flex') nav.style.display='none'; else nav.style.display='flex'; });
+
+    /* -------------------- reveal on scroll -------------------- */
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{
+        if(e.isIntersecting) e.target.classList.add('show');
+      });
+    },{threshold:0.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+    /* -------------------- smooth anchor scroll -------------------- */
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (e)=>{
+        const href = a.getAttribute('href'); if(href === '#') return;
+        const el = document.querySelector(href);
+        if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth',block:'start'}); }
+      });
+    });
+
+    /* -------------------- efficient cursor ring + trail -------------------- */
+    const ring = document.getElementById('cursor-ring');
+    let lastTrail = 0;
+    const TRAIL_RATE = 40; // ms between creating trail elements
+    window.addEventListener('mousemove', e=>{
+      ring.style.left = e.clientX + 'px';
+      ring.style.top = e.clientY + 'px';
+      const now = performance.now();
+      if(now - lastTrail > TRAIL_RATE){
+        lastTrail = now;
+        createCursorTrail(e.clientX, e.clientY);
+      }
+    });
+
+    function createCursorTrail(x, y) {
+      if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const trail = document.createElement('div');
+      trail.className = 'cursor-trail';
+      trail.style.left = x + 'px';
+      trail.style.top = y + 'px';
+      document.body.appendChild(trail);
+      requestAnimationFrame(()=>{ trail.style.opacity = '0'; trail.style.transform = 'translate(-50%,-50%) scale(1.9)'; });
+      setTimeout(() => trail.remove(), 420);
+    }
+
+    /* -------------------- image tilt / parallax (cards + profile) -------------------- */
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(!reduceMotion){
+      // profile tilt
+      const wrapper = document.getElementById('pf-wrapper');
+      const pic = document.getElementById('pf-pic');
+      wrapper.addEventListener('pointermove', e=>{
+        const r = wrapper.getBoundingClientRect();
+        const cx = r.left + r.width/2, cy = r.top + r.height/2;
+        const dx = (e.clientX - cx) / (r.width/2);
+        const dy = (e.clientY - cy) / (r.height/2);
+        const rotX = (-dy * 6).toFixed(2);
+        const rotY = (dx * 6).toFixed(2);
+        wrapper.classList.add('is-tilt');
+        pic.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg) translateZ(6px)`;
+      });
+      wrapper.addEventListener('pointerleave', ()=>{
+        wrapper.classList.remove('is-tilt');
+        pic.style.transform = '';
+      });
+
+      // project card tilt (pointer)
+      document.querySelectorAll('.card.interactive').forEach(card=>{
+        card.style.transformStyle = 'preserve-3d';
+        card.addEventListener('pointermove', e=>{
+          const r = card.getBoundingClientRect();
+          const mx = (e.clientX - (r.left + r.width/2)) / (r.width/2);
+          const my = (e.clientY - (r.top + r.height/2)) / (r.height/2);
+          const rx = (-my * 4).toFixed(2);
+          const ry = (mx * 6).toFixed(2);
+          card.style.transform = `perspective(800px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px)`;
+        });
+        card.addEventListener('pointerleave', ()=>{ card.style.transform = ''; });
+      });
+    }
+
+    /* -------------------- accessibility: reduced motion handling -------------------- */
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+      document.querySelectorAll('.pf-pic, .card img').forEach(el=>el.style.animation='none');
+    }
+
+    /* keyboard focus visible (simple) */
+    document.addEventListener('keydown', (e)=>{ if(e.key === 'Tab') document.body.classList.add('show-focus'); });
+
+  </script>
+  <script type="module">
+    // GLTF + postprocessing: high-quality interactive hero model
+    import * as THREE from 'https://unpkg.com/three@0.155.0/build/three.module.js';
+    import { GLTFLoader } from 'https://unpkg.com/three@0.155.0/examples/jsm/loaders/GLTFLoader.js';
+    import { RGBELoader } from 'https://unpkg.com/three@0.155.0/examples/jsm/loaders/RGBELoader.js';
+    import { EffectComposer } from 'https://unpkg.com/three@0.155.0/examples/jsm/postprocessing/EffectComposer.js';
+    import { RenderPass } from 'https://unpkg.com/three@0.155.0/examples/jsm/postprocessing/RenderPass.js';
+    import { UnrealBloomPass } from 'https://unpkg.com/three@0.155.0/examples/jsm/postprocessing/UnrealBloomPass.js';
+
+    const canvas = document.getElementById('pf-3d');
+    if(!canvas || window.matchMedia('(prefers-reduced-motion: reduce)').matches) { if(canvas) canvas.style.display='none'; }
+    else {
+      const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.outputEncoding = THREE.sRGBEncoding;
+
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(38, 1, 0.1, 100);
+      camera.position.set(0, 0, 3.5);
+
+      // HDR env (use a small-ish .hdr or .exr placed in assets/env.hdr)
+      new RGBELoader().setDataType(THREE.UnsignedByteType).load('assets/env_small.hdr', (tex) => {
+        tex.mapping = THREE.EquirectangularReflectionMapping;
+        scene.environment = tex;
+        scene.background = null;
+      });
+
+      // composer + bloom
+      const composer = new EffectComposer(renderer);
+      composer.addPass(new RenderPass(scene, camera));
+      const bloom = new UnrealBloomPass(new THREE.Vector2(256,256), 0.8, 0.4, 0.15);
+      bloom.threshold = 0.9; bloom.strength = 0.6; bloom.radius = 0.6;
+      composer.addPass(bloom);
+
+      // load GLTF model (place model at assets/model/hero.glb)
+      const loader = new GLTFLoader();
+      let root;
+      loader.load('assets/model/hero.glb', (gltf) => {
+        root = gltf.scene;
+        root.scale.setScalar(1.0);
+        root.rotation.y = Math.PI * 0.02;
+        scene.add(root);
+      });
+
+      // lights fallback
+      scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+      const d = new THREE.DirectionalLight(0xffffff, 0.6);
+      d.position.set(5,5,5); scene.add(d);
+
+      // pointer reaction + subtle idle
+      let px=0, py=0;
+      window.addEventListener('pointermove', (e)=>{ px = (e.clientX/window.innerWidth - 0.5); py = (e.clientY/window.innerHeight - 0.5); }, {passive:true});
+
+      let last = performance.now();
+      function animate(now){
+        const dt = (now - last) / 1000; last = now;
+        if(root){
+          root.rotation.y += 0.35 * dt;
+          root.rotation.x = THREE.MathUtils.lerp(root.rotation.x, py * 0.15, 0.08);
+          root.rotation.z = THREE.MathUtils.lerp(root.rotation.z, -px * 0.08, 0.08);
+        }
+        // resize
+        const rect = canvas.getBoundingClientRect();
+        const w = Math.max(64, Math.floor(rect.width));
+        const h = Math.max(64, Math.floor(rect.height));
+        if(renderer.domElement.width !== w * devicePixelRatio || renderer.domElement.height !== h * devicePixelRatio){
+          renderer.setSize(w,h,false); camera.aspect = w/h; camera.updateProjectionMatrix();
+          composer.setSize(w,h);
+        }
+        composer.render();
+        requestAnimationFrame(animate);
+      }
+      requestAnimationFrame(animate);
+    }
+  </script>
+  <script src="https://unpkg.com/lottie-web/build/player/lottie.min.js"></script>
+  <script>
+    lottie.loadAnimation({ container: document.getElementById('logo-lottie'),
+      renderer:'svg', loop:false, autoplay:true, path:'assets/lottie/logo.json' });
+  </script>
+  <!-- place near project card rendering: lightweight approach -->
+  <!-- load three + simple shader to replace <img> with WebGL plane on hover -->
+  <script type="module">
+    import * as THREE from 'https://unpkg.com/three@0.155.0/build/three.module.js';
+    // create small WebGL overlay per-card on hover that displaces with pointer
+    // (outline idea; implement per project card to replace img on hover for nice ripple)
+  </script>
+</body>
+</html>
